@@ -1,5 +1,4 @@
-// Enforced dynamic copyright rendering under issue #2211
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -57,13 +56,6 @@ const footerColumns = [
     ],
   },
 ];
-
-
-const footerSectionKeys = {
-  quick_links: "footer.sections.quickLinks",
-  community: "footer.sections.community",
-  support: "footer.sections.support",
-};
 
 const socialLinks = [
   {
@@ -197,11 +189,6 @@ const Newsletter = () => {
   const feedbackId =
     "footer-newsletter-feedback";
 
-  const feedbackColor =
-    feedback.type === "success"
-      ? "text-green-600 dark:text-green-400"
-      : "text-red-600 dark:text-red-400";
-
   return (
     <div>
       <p className="text-xs font-semibold uppercase tracking-widest text-indigo-500 dark:text-indigo-400 mb-1">
@@ -264,73 +251,6 @@ const Newsletter = () => {
   );
 };
 
-// const SocialLinksRender = () => {
-//   const { t } = useTranslation();
-//   return (
-//     <div>
-//       <h4 className="text-lg font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-3">
-//         {t("footer.followUs")}
-//       </h4>
-
-//       <div className="flex flex-wrap gap-4 items-center">
-//         {socialLinks.map((link) => (
-//           <ExternalLink
-//             key={link.name}
-//             href={link.href}
-//             className="text-gray-500 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-1 rounded-full"
-//             aria-label={link.name}
-//             title={link.name}
-//           >
-//             <span className="sr-only">
-//               {link.name}
-//             </span>
-
-//             {link.icon}
-//           </ExternalLink>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// const FooterLinksRender = () => {
-//   const { t } = useTranslation();
-//   return (
-//     <>
-//       {Object.entries(footerLinks).map(
-//         ([key, links]) => (
-//           <div
-//             key={key}
-//             className="py-2 flex flex-col gap-2"
-//           >
-//             <h4 className="text-sm font-bold mb-4 tracking-wide text-gray-900 dark:text-white uppercase">
-//               {t(footerSectionKeys[key])}
-//             </h4>
-
-//             <ul className="space-y-3">
-//               {links.map((link) => (
-//                 <li key={link.nameKey}>
-//                   <Link
-//                     to={link.href}
-//                     className="text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white flex items-center gap-4 transition-all duration-300 hover:translate-x-1 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-1 rounded"
-//                   >
-//                     {link.icon && (
-//                       <span className="text-gray-700 dark:text-gray-200 group-hover:scale-110 transition-all duration-300">
-//                         {link.icon}
-//                       </span>
-//                     )}
-
-//                     <span>{t(link.nameKey)}</span>
-//                   </Link>
-//                 </li>
-//               ))}
-//             </ul>
-//           </div>
-//         )
-//       )}
-//     </>
-//   );
-// };
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -395,7 +315,7 @@ return (
               </h4>
               <ul className="space-y-0.05 sm:space-y-2.5">
                 {col.links.map((link) => (
-                  <li>
+                  <li key={link.nameKey}>
                     <Link
                       to={link.href}
                       className="group inline-flex items-center gap-2 text-xs sm:text-sm text-gray-500  dark:text-gray-400 hover:!text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded"
